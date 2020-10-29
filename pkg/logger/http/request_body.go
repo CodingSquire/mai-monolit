@@ -3,7 +3,7 @@ package httplogger
 import (
 	"bytes"
 	"encoding/json"
-	"gitlab.com/CodingSquire/mai_monolit/pkg/logger"
+	"github.com/CodingSquire/mai-monolit/pkg/logger"
 	"io/ioutil"
 	"net/http"
 

@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"gitlab.com/CodingSquire/mai_monolit/pkg/api"
+	"github.com/CodingSquire/mai-monolit/pkg/api"
 	"io"
 	"os"
 

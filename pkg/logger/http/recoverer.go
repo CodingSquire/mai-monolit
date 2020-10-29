@@ -2,7 +2,7 @@ package httplogger
 
 import (
 	"errors"
-	"gitlab.com/CodingSquire/mai_monolit/pkg/logger"
+	"github.com/CodingSquire/mai-monolit/pkg/logger"
 	"net/http"
 	"runtime/debug"
 

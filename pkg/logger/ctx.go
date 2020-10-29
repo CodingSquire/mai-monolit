@@ -2,7 +2,7 @@ package logger
 
 import (
 	"context"
-	"gitlab.com/CodingSquire/mai_monolit/pkg/api"
+	"github.com/CodingSquire/mai-monolit/pkg/api"
 
 	"github.com/rs/zerolog"
 
