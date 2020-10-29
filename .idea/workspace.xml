@@ -20,12 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c90fc1c-5eed-443b-bea1-504aed2baafd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/logger/ctx.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/logger/ctx.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/logger/http/recoverer.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/logger/http/recoverer.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/logger/http/request_body.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/logger/http/request_body.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/logger/new.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/logger/new.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/logger/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/logger/config.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +58,22 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="go build github.com/CodingSquire/mai-monolit/cmd" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="mai-monolit" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/cmd/main.go" />
+      <package value="github.com/CodingSquire/mai-monolit/cmd" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build github.com/CodingSquire/mai-monolit/cmd" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
@@ -80,6 +93,38 @@
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
+    <state width="1398" height="304" key="GridCell.Tab.0.bottom" timestamp="1603934035835">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603934035835" />
+    <state width="1398" height="304" key="GridCell.Tab.0.center" timestamp="1603934035834">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1603934035834" />
+    <state width="1398" height="304" key="GridCell.Tab.0.left" timestamp="1603934035833">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1603934035833" />
+    <state width="1398" height="304" key="GridCell.Tab.0.right" timestamp="1603934035835">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1603934035835" />
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1603934035838">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603934035838" />
+    <state width="1398" height="304" key="GridCell.Tab.1.center" timestamp="1603934035837">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1603934035837" />
+    <state width="1398" height="304" key="GridCell.Tab.1.left" timestamp="1603934035836">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1603934035836" />
+    <state width="1398" height="304" key="GridCell.Tab.1.right" timestamp="1603934035837">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1603934035837" />
     <state x="221" y="89" key="SettingsEditor" timestamp="1603932316309">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -88,5 +133,21 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="418" y="205" width="604" height="518" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1603932271278" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/cmd/main.go</url>
+          <line>42</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/cmd/main.go</url>
+          <line>31</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

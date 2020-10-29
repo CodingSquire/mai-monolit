@@ -15,8 +15,8 @@ import (
 
 type configuration struct {
 	Logger                logger.Config
-	Port  string `envconfig:"PORT" default:"true"`
-	Debug bool   `envconfig:"DEBUG" default:"true"`
+	Port  string `env:"PORT,default=true"`
+	Debug bool   `env:"DEBUG,default=true"`
 }
 var (
 	gitCommit = "undefined"
