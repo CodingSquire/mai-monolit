@@ -19,7 +19,7 @@ const (
 	// HTTPMethodCreateThesis ...
 	HTTPMethodCreateThesis = http.MethodPost
 	// HTTPMethodChangeThesis ...
-	HTTPMethodChangeThesis = http.MethodPut
+	HTTPMethodChangeThesis = http.MethodPost
 	// HTTPMethodGetThesisByFilter ...
-	HTTPMethodGetThesisByFilter = http.MethodGet
+	HTTPMethodGetThesisByFilter = http.MethodPost
 )
