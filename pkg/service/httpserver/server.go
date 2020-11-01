@@ -53,7 +53,7 @@ func (s *createThesisServer) ServeHTTP(ctx *fasthttp.RequestCtx) {
 }
 
 // NewCreateThesisServer the server creator
-func NewCreateThesisServer(transport CreateThesisTransport, service service, errorProcessor errorProcessor) fasthttp.RequestHandler {
+func  NewCreateThesisServer(transport CreateThesisTransport, service service, errorProcessor errorProcessor) fasthttp.RequestHandler {
 	ls := createThesisServer{
 		transport:      transport,
 		service:        service,
