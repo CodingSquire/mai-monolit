@@ -5,120 +5,55 @@ package httpclient
 
 import (
 	"context"
+	"github.com/CodingSquire/mai-monolit/pkg/api"
 
 	"github.com/valyala/fasthttp"
-
-	v1 "git.wildberries.ru/portals/analytics-back/pkg/api/bansvc/v1"
 )
 
-var (
-	// GetBrandsByID ...
-	GetBrandsByID = option{}
-	// GetByFilter ...
-	GetByFilter = option{}
-	// GetExcelReport ...
-	GetExcelReport = option{}
-)
 
-type option struct{}
 
-// Option ...
-type Option interface {
-	Prepare(ctx context.Context, r *fasthttp.Request)
-}
+
 
 // Service implements Service interface
 type Service interface {
-	GetBrandsByID(ctx context.Context, request *v1.GetBrandsByIDRequest) (response v1.GetBrandsByIDResponse, err error)
-	GetByFilter(ctx context.Context, request *v1.GetByFilterRequest) (response v1.GetByFilterResponse, err error)
-	GetExcelReport(ctx context.Context, request *v1.GetExcelReportRequest) (response v1.GetExcelReportResponse, err error)
+	CreateThesis(ctx context.Context, request *api.CreateThesisRequest)(response api.CreateThesisResponse, err error)
+	//ChangeThesis(ctx context.Context, request *api.ChangeThesisRequest)(response api.ChangeThesisResponse, err error)
+	//GetThesisByFilter(ctx context.Context, request *api.GetThesisByFilterRequest)(response api.GetThesisByFilterResponse, err error)
 }
 
 type client struct {
 	cli *fasthttp.HostClient
 
-	transportGetExcelReport GetExcelReportClientTransport
-	transportGetBrandsByID  GetBrandsByIDClientTransport
-	transportGetByFilter    GetByFilterClientTransport
-	options                 map[interface{}]Option
+	transportCreateThesis CreateThesisTransport
 }
 
 // GetBrandsByID ...
-func (s *client) GetBrandsByID(ctx context.Context, request *v1.GetBrandsByIDRequest) (response v1.GetBrandsByIDResponse, err error) {
+func (s *client) CreateThesis(ctx context.Context, request *api.CreateThesisRequest)(response api.CreateThesisResponse, err error){
 	req, res := fasthttp.AcquireRequest(), fasthttp.AcquireResponse()
 	defer func() {
 		fasthttp.ReleaseRequest(req)
 		fasthttp.ReleaseResponse(res)
 	}()
-	if opt, ok := s.options[GetBrandsByID]; ok {
-		opt.Prepare(ctx, req)
-	}
-	if err = s.transportGetBrandsByID.EncodeRequest(ctx, req, request); err != nil {
+	if err = s.transportCreateThesis.EncodeRequest(ctx, req, request); err != nil {
 		return
 	}
 	err = s.cli.Do(req, res)
 	if err != nil {
 		return
 	}
-	return s.transportGetBrandsByID.DecodeResponse(ctx, res)
-}
-
-// GetByFilter ...
-func (s *client) GetByFilter(ctx context.Context, request *v1.GetByFilterRequest) (response v1.GetByFilterResponse, err error) {
-	req, res := fasthttp.AcquireRequest(), fasthttp.AcquireResponse()
-	defer func() {
-		fasthttp.ReleaseRequest(req)
-		fasthttp.ReleaseResponse(res)
-	}()
-	if opt, ok := s.options[GetByFilter]; ok {
-		opt.Prepare(ctx, req)
-	}
-	if err = s.transportGetByFilter.EncodeRequest(ctx, req, request); err != nil {
-		return
-	}
-	err = s.cli.Do(req, res)
-	if err != nil {
-		return
-	}
-	return s.transportGetByFilter.DecodeResponse(ctx, res)
-}
-
-// GetExcelReport ...
-func (s *client) GetExcelReport(ctx context.Context, request *v1.GetExcelReportRequest) (response v1.GetExcelReportResponse, err error) {
-	req, res := fasthttp.AcquireRequest(), fasthttp.AcquireResponse()
-	defer func() {
-		fasthttp.ReleaseRequest(req)
-		fasthttp.ReleaseResponse(res)
-	}()
-	if opt, ok := s.options[GetExcelReport]; ok {
-		opt.Prepare(ctx, req)
-	}
-	if err = s.transportGetExcelReport.EncodeRequest(ctx, req, request); err != nil {
-		return
-	}
-	err = s.cli.Do(req, res)
-	if err != nil {
-		return
-	}
-	return s.transportGetExcelReport.DecodeResponse(ctx, res)
+	return s.transportCreateThesis.DecodeResponse(ctx, res)
 }
 
 // NewClient the client creator
 func NewClient(
 	cli *fasthttp.HostClient,
 
-	transportGetExcelReport GetExcelReportClientTransport,
-	transportGetBrandsByID GetBrandsByIDClientTransport,
-	transportGetByFilter GetByFilterClientTransport,
-	options map[interface{}]Option,
+	transportCreateThesis CreateThesisTransport,
 ) Service {
 	return &client{
 		cli: cli,
 
-		transportGetExcelReport: transportGetExcelReport,
-		transportGetBrandsByID:  transportGetBrandsByID,
-		transportGetByFilter:    transportGetByFilter,
-		options:                 options,
+		transportCreateThesis: transportCreateThesis,
 	}
 }
 
@@ -127,48 +62,30 @@ func NewPreparedClient(
 	serverURL string,
 	serverHost string,
 	maxConns int,
-	options map[interface{}]Option,
 	errorProcessor errorProcessor,
 	errorCreator errorCreator,
 
-	uriPathGetExcelReport string,
-	uriPathGetBrandsByID string,
-	uriPathGetByFilter string,
+	uriPathCreateThesis string,
 
-	httpMethodGetExcelReport string,
+
+
 	httpMethodGetBrandsByID string,
-	httpMethodGetByFilter string,
+
 ) Service {
 
-	transportGetBrandsByID := NewGetBrandsByIDClientTransport(
+	transportCreateThesis := NewCreateThesisTransport(
 		errorProcessor,
 		errorCreator,
-		serverURL+uriPathGetBrandsByID,
+		serverURL+uriPathCreateThesis,
 		httpMethodGetBrandsByID,
 	)
 
-	transportGetByFilter := NewGetByFilterClientTransport(
-		errorProcessor,
-		errorCreator,
-		serverURL+uriPathGetByFilter,
-		httpMethodGetByFilter,
-	)
-
-	transportGetExcelReport := NewGetExcelReportClientTransport(
-		errorProcessor,
-		errorCreator,
-		serverURL+uriPathGetExcelReport,
-		httpMethodGetExcelReport,
-	)
 	return NewClient(
 		&fasthttp.HostClient{
 			Addr:     serverHost,
 			MaxConns: maxConns,
 		},
 
-		transportGetExcelReport,
-		transportGetBrandsByID,
-		transportGetByFilter,
-		options,
+		transportCreateThesis,
 	)
 }
