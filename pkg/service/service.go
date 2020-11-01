@@ -10,9 +10,9 @@ import (
 
 // Service implements Service interface
 type Service interface {
-	CreateThesis(ctx context.Context, request api.CreateThesisRequest)(response api.CreateThesisResponse, err error)
-	ChangeThesis(ctx context.Context, request api.ChangeThesisRequest)(response api.ChangeThesisResponse, err error)
-	GetThesisByFilter(ctx context.Context, request api.GetThesisByFilterRequest)(response api.GetThesisByFilterResponse, err error)
+	CreateThesis(ctx context.Context, request *api.CreateThesisRequest)(response api.CreateThesisResponse, err error)
+	ChangeThesis(ctx context.Context, request *api.ChangeThesisRequest)(response api.ChangeThesisResponse, err error)
+	GetThesisByFilter(ctx context.Context, request *api.GetThesisByFilterRequest)(response api.GetThesisByFilterResponse, err error)
 }
 
 type dataService interface {
@@ -24,7 +24,7 @@ type service struct{
 	dataService dataService
 }
 
-func (s *service)CreateThesis(ctx context.Context, request api.CreateThesisRequest)(response api.CreateThesisResponse, err error){
+func (s *service)CreateThesis(ctx context.Context, request *api.CreateThesisRequest)(response api.CreateThesisResponse, err error){
 	thesis:=api.Thesis{
 		ID:             request.ID,
 		AuthorID:       request.AuthorID,
@@ -45,7 +45,7 @@ func (s *service)CreateThesis(ctx context.Context, request api.CreateThesisReque
 	return response, err
 }
 
-func (s *service)ChangeThesis(ctx context.Context, request api.ChangeThesisRequest)(response api.ChangeThesisResponse, err error){
+func (s *service)ChangeThesis(ctx context.Context, request *api.ChangeThesisRequest)(response api.ChangeThesisResponse, err error){
 	thesis,err:=s.dataService.GetThesis(ctx,request.ID)
 	if err!=nil{
 		return response,err
@@ -59,7 +59,7 @@ func (s *service)ChangeThesis(ctx context.Context, request api.ChangeThesisReque
 	return response, err
 }
 
-func (s *service)GetThesisByFilter(ctx context.Context, request api.GetThesisByFilterRequest)(response api.GetThesisByFilterResponse, err error){
+func (s *service)GetThesisByFilter(ctx context.Context, request *api.GetThesisByFilterRequest)(response api.GetThesisByFilterResponse, err error){
 	thesis,err:=s.dataService.GetThesis(ctx,request.ID)
 	if err!=nil{
 		return response, err
@@ -68,7 +68,7 @@ func (s *service)GetThesisByFilter(ctx context.Context, request api.GetThesisByF
 	return response, err
 }
 
-func compareThesis(old *api.Thesis,data api.ChangeThesisRequest){
+func compareThesis(old *api.Thesis,data *api.ChangeThesisRequest){
 	if data.Fields!=nil{
 		old.Fields=*data.Fields
 	}

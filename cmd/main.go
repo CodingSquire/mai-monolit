@@ -51,10 +51,10 @@ func main() {
 		Thesis:        "sdfsdfsdfsdf",
 		Fields:        "sdfsdfsdfsdfsdfsdfsdf",
 	}
-	svc.CreateThesis(ctx,requestCreate)
+	svc.CreateThesis(ctx,&requestCreate)
 
 
-	svc.GetThesisByFilter(ctx,api.GetThesisByFilterRequest{ID: 11})
+	svc.GetThesisByFilter(ctx,&api.GetThesisByFilterRequest{ID: 11})
 
 
 	requestChange:=api.ChangeThesisRequest{
@@ -63,10 +63,10 @@ func main() {
 		Subject:       strptr("New Autor"),
 	}
 
-	svc.ChangeThesis(ctx,requestChange)
+	svc.ChangeThesis(ctx,&requestChange)
 
 
-	svc.GetThesisByFilter(ctx,api.GetThesisByFilterRequest{ID: 11})
+	svc.GetThesisByFilter(ctx,&api.GetThesisByFilterRequest{ID: 11})
 
 }
 

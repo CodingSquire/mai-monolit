@@ -15,7 +15,7 @@ type loggingMiddleware struct {
 	svc    Service
 }
 
-func (s *loggingMiddleware) CreateThesis(ctx context.Context, request api.CreateThesisRequest)(response api.CreateThesisResponse, err error) {
+func (s *loggingMiddleware) CreateThesis(ctx context.Context, request *api.CreateThesisRequest)(response api.CreateThesisResponse, err error) {
 	defer func(begin time.Time) {
 		s.wrap(ctx, err).
 			Str("method", "CreateThesis").
@@ -34,7 +34,7 @@ func (s *loggingMiddleware) CreateThesis(ctx context.Context, request api.Create
 	return response, err
 }
 
-func (s *loggingMiddleware) ChangeThesis(ctx context.Context, request api.ChangeThesisRequest)(response api.ChangeThesisResponse, err error) {
+func (s *loggingMiddleware) ChangeThesis(ctx context.Context, request *api.ChangeThesisRequest)(response api.ChangeThesisResponse, err error) {
 	defer func(begin time.Time) {
 		s.wrap(ctx, err).
 			Str("method", "ChangeThesis").
@@ -53,7 +53,7 @@ func (s *loggingMiddleware) ChangeThesis(ctx context.Context, request api.Change
 	return response, err
 }
 
-func (s *loggingMiddleware) GetThesisByFilter(ctx context.Context, request api.GetThesisByFilterRequest)(response api.GetThesisByFilterResponse, err error) {
+func (s *loggingMiddleware) GetThesisByFilter(ctx context.Context, request *api.GetThesisByFilterRequest)(response api.GetThesisByFilterResponse, err error) {
 	defer func(begin time.Time) {
 		s.wrap(ctx, err).
 			Str("method", "GetThesisByFilter").
