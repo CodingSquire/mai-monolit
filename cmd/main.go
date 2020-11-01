@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	httpserver2 "github.com/CodingSquire/mai-monolit/pkg/service/httpserver"
+	"github.com/valyala/fasthttp"
 
 	"github.com/joeshaw/envdecode"
 
@@ -68,8 +70,19 @@ func main() {
 
 	svc.GetThesisByFilter(ctx,&api.GetThesisByFilterRequest{ID: 11})
 
+
+	router := httpserver2.NewPreparedServer(svc)
+
+
+
+	go func() {
+		err:=fasthttp.ListenAndServe(":8080", router.Handler)
+		if err!=nil{
+			log.Fatal().Err(err).Msg("Crash service")
+		}
+	}()
+
 }
 
 func intptr(v int) *int    { return &v }
 func strptr(v string) *string    { return &v }
-func boolptr(v bool) *bool { return &v }
