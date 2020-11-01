@@ -63,11 +63,102 @@ func  NewCreateThesisServer(transport CreateThesisTransport, service service, er
 }
 
 
+
+
+
+
+type changeThesisServer struct {
+	transport      ChangeThesisTransport
+	service        service
+	errorProcessor errorProcessor
+}
+
+// ServeHTTP implements http.Handler.
+func (s *changeThesisServer) ServeHTTP(ctx *fasthttp.RequestCtx) {
+	request, err := s.transport.DecodeRequest(ctx, &ctx.Request)
+	if err != nil {
+		s.errorProcessor.Encode(ctx, &ctx.Response, err)
+		return
+	}
+
+	response, err := s.service.ChangeThesis(ctx, &request)
+	if err != nil {
+		s.errorProcessor.Encode(ctx, &ctx.Response, err)
+		return
+	}
+
+	if err := s.transport.EncodeResponse(ctx, &ctx.Response, &response); err != nil {
+		s.errorProcessor.Encode(ctx, &ctx.Response, err)
+		return
+	}
+}
+
+// NewChangeThesisServer the server creator
+func  NewChangeThesisServer(transport ChangeThesisTransport, service service, errorProcessor errorProcessor) fasthttp.RequestHandler {
+	ls := changeThesisServer{
+		transport:      transport,
+		service:        service,
+		errorProcessor: errorProcessor,
+	}
+	return ls.ServeHTTP
+}
+
+
+
+
+
+
+
+
+
+
+
+
+type getThesisByFilterServer struct {
+	transport      GetThesisByFilterTransport
+	service        service
+	errorProcessor errorProcessor
+}
+
+// ServeHTTP implements http.Handler.
+func (s *getThesisByFilterServer) ServeHTTP(ctx *fasthttp.RequestCtx) {
+	request, err := s.transport.DecodeRequest(ctx, &ctx.Request)
+	if err != nil {
+		s.errorProcessor.Encode(ctx, &ctx.Response, err)
+		return
+	}
+
+	response, err := s.service.GetThesisByFilter(ctx, &request)
+	if err != nil {
+		s.errorProcessor.Encode(ctx, &ctx.Response, err)
+		return
+	}
+
+	if err := s.transport.EncodeResponse(ctx, &ctx.Response, &response); err != nil {
+		s.errorProcessor.Encode(ctx, &ctx.Response, err)
+		return
+	}
+}
+
+// NewGetThesisByFilterServer the server creator
+func  NewGetThesisByFilterServer(transport GetThesisByFilterTransport, service service, errorProcessor errorProcessor) fasthttp.RequestHandler {
+	ls := getThesisByFilterServer{
+		transport:      transport,
+		service:        service,
+		errorProcessor: errorProcessor,
+	}
+	return ls.ServeHTTP
+}
+
+
+
+
 // NewPreparedServer factory for server api handler
 func NewPreparedServer(svc service) *fasthttprouter.Router {
 	errorProcessor := httpserver.NewErrorProcessor(http.StatusInternalServerError, "internal error")
 	createThesisTransport := NewCreateThesisTransport(httpserver.NewError)
-
+	changeThesisTransport := NewChangeThesisTransport(httpserver.NewError)
+	getThesisByFilterTransport := NewGetThesisByFilterTransport(httpserver.NewError)
 	return httpserver.MakeFastHTTPRouter(
 		[]*httpserver.HandlerSettings{
 			{
@@ -79,23 +170,24 @@ func NewPreparedServer(svc service) *fasthttprouter.Router {
 					errorProcessor,
 				),
 			},
-			//{
-			//	Path:   URIPathClientGetBrandsByID,
-			//	Method: HTTPMethodGetBrandsByID,
-			//	Handler: NewGetBrandsByIDServer(
-			//		getBrandsByIDTransport,
-			//		svc,
-			//		errorProcessor,
-			//	),
-			//}, {
-			//	Path:   URIPathClientGetByFilter,
-			//	Method: HTTPMethodGetByFilter,
-			//	Handler: NewGetByFilterServer(
-			//		getByFilterTransport,
-			//		svc,
-			//		errorProcessor,
-			//	),
-			//},
+			{
+				Path:   URIPathClientChangeThesis,
+				Method: HTTPMethodChangeThesis,
+				Handler: NewChangeThesisServer(
+					changeThesisTransport,
+					svc,
+					errorProcessor,
+				),
+			},
+			{
+				Path:   URIPathClientGetThesisByFilter,
+				Method: HTTPMethodGetThesisByFilter,
+				Handler: NewGetThesisByFilterServer(
+					getThesisByFilterTransport,
+					svc,
+					errorProcessor,
+				),
+			},
 		},
 	)
 }
