@@ -1,7 +1,7 @@
 FROM golang:alpine as builder
 
 ENV GO111MODULE=on
-WORKDIR /app/
+WORKDIR /home/app
 COPY go.mod .
 COPY go.sum .
 
@@ -15,10 +15,13 @@ FROM alpine:latest as app
 
 RUN apk --no-cache add ca-certificates
 
-WORKDIR /root/
+RUN adduser -D myuser
+USER myuser
+
+WORKDIR /home/root
 
 # Copy the Pre-built binary file from the previous stage
-COPY --from=builder /app/main .
+COPY --from=builder /home/app/main .
 
 # Command to run the executable
 CMD ["./main"]
