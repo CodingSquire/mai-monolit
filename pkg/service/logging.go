@@ -73,7 +73,7 @@ func (s *loggingMiddleware) GetThesisByFilter(ctx context.Context, request *api.
 }
 
 func (s *loggingMiddleware) wrap(ctx context.Context, err error) *zerolog.Event {
-	lvl := logger.Ctx(ctx).Debug()
+	lvl := logger.Ctx(ctx).Info()
 	if err != nil {
 		lvl = logger.Ctx(ctx).Error()
 	}
