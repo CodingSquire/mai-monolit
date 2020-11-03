@@ -38,7 +38,7 @@ func main() {
 
 	dataservice:=dataservice.NewService(httpserver.NewError)
 	svc := service.NewService(dataservice)
-	svc =service.NewLoggingMiddleware(svc)
+	svc =service.NewLoggingMiddleware(svc,l)
 
 	//
 	//

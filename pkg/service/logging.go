@@ -3,16 +3,15 @@ package service
 import (
 	"context"
 	"github.com/rs/zerolog"
-
 	"time"
 
 	"github.com/CodingSquire/mai-monolit/pkg/api"
-	"github.com/CodingSquire/mai-monolit/pkg/logger"
 )
 
 // loggingMiddleware wraps Service and logs request information to the provided logger
 type loggingMiddleware struct {
 	svc    Service
+	logger *api.Logger
 }
 
 func (s *loggingMiddleware) CreateThesis(ctx context.Context, request *api.CreateThesisRequest)(response api.CreateThesisResponse, err error) {
@@ -25,7 +24,7 @@ func (s *loggingMiddleware) CreateThesis(ctx context.Context, request *api.Creat
 			Err(err).
 			Msg("End.")
 	}(time.Now())
-	logger.Ctx(ctx).Debug().
+	s.logger.Debug().
 		Str("method", "CreateThesis").
 		Time("timestamp", time.Now()).
 		Interface("request", request).
@@ -44,7 +43,7 @@ func (s *loggingMiddleware) ChangeThesis(ctx context.Context, request *api.Chang
 			Err(err).
 			Msg("End.")
 	}(time.Now())
-	logger.Ctx(ctx).Debug().
+	s.logger.Debug().
 		Str("method", "ChangeThesis").
 		Time("timestamp", time.Now()).
 		Interface("request", request).
@@ -63,7 +62,7 @@ func (s *loggingMiddleware) GetThesisByFilter(ctx context.Context, request *api.
 			Err(err).
 			Msg("End.")
 	}(time.Now())
-	logger.Ctx(ctx).Debug().
+	s.logger.Debug().
 		Str("method", "GetThesisByFilter").
 		Time("timestamp", time.Now()).
 		Interface("request", request).
@@ -73,16 +72,17 @@ func (s *loggingMiddleware) GetThesisByFilter(ctx context.Context, request *api.
 }
 
 func (s *loggingMiddleware) wrap(ctx context.Context, err error) *zerolog.Event {
-	lvl := logger.Ctx(ctx).Info()
+	lvl := s.logger.Info()
 	if err != nil {
-		lvl = logger.Ctx(ctx).Error()
+		lvl = s.logger.Error()
 	}
 	return lvl
 }
 
 // NewLoggingMiddleware ...
-func NewLoggingMiddleware( svc Service) Service {
+func NewLoggingMiddleware(svc Service,logger *api.Logger ) Service {
 	return &loggingMiddleware{
 		svc:    svc,
+		logger: logger,
 	}
 }
