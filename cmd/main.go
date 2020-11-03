@@ -74,7 +74,7 @@ func main() {
 
 
 
-		port:= os.Getenv("PORT")
+		port:= ":"+os.Getenv("PORT")
 		err:=fasthttp.ListenAndServe(port, router.Handler)
 		if err!=nil{
 			log.Fatal().Err(err).Msg("Crash service")
