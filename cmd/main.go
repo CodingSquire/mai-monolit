@@ -3,6 +3,7 @@ package main
 import (
 	httpserver2 "github.com/CodingSquire/mai-monolit/pkg/service/httpserver"
 	"github.com/valyala/fasthttp"
+	"os"
 
 	"github.com/joeshaw/envdecode"
 
@@ -73,8 +74,8 @@ func main() {
 
 
 
-
-		err:=fasthttp.ListenAndServe(":8080", router.Handler)
+		port:= ":"+os.Getenv("PORT")
+		err:=fasthttp.ListenAndServe(port, router.Handler)
 		if err!=nil{
 			log.Fatal().Err(err).Msg("Crash service")
 		}
