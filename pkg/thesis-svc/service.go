@@ -1,4 +1,4 @@
-package service
+package thesis_svc
 
 import (
 	"context"
