@@ -12,12 +12,6 @@ type errorCreator func(status int, format string, v ...interface{}) error
 
 
 
-//type service interface {
-//	CreateThesis(ctx context.Context, request *api.CreateThesisRequest)(response api.CreateThesisResponse, err error)
-//	ChangeThesis(ctx context.Context, request *api.ChangeThesisRequest)(response api.ChangeThesisResponse, err error)
-//	GetThesisByFilter(ctx context.Context, request *api.GetThesisByFilterRequest)(response api.GetThesisByFilterResponse, err error)
-//}
-
 // CreateThesisTransport transport interface
 type CreateThesisTransport interface {
 	DecodeRequest(ctx context.Context, r *fasthttp.Request) (request api.CreateThesisRequest, err error)

@@ -1,3 +1,6 @@
+//Package httpclient http client
+//CODE GENERATED AUTOMATICALLY
+//THIS FILE COULD BE EDITED BY HANDS
 package httpclient
 
 import (

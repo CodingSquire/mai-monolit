@@ -160,7 +160,101 @@ func (v *Thesis) UnmarshalJSON(data []byte) error {
 func (v *Thesis) UnmarshalEasyJSON(l *jlexer.Lexer) {
 	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi(l, v)
 }
-func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi1(in *jlexer.Lexer, out *GetThesisByFilterResponse) {
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi1(in *jlexer.Lexer, out *Segment) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "id":
+			out.ID = int(in.Int())
+		case "DateCreate":
+			out.DateCreate = string(in.String())
+		case "DateLastChange":
+			out.DateLastChange = string(in.String())
+		case "Status":
+			out.Status = string(in.String())
+		case "Changes":
+			out.Changes = string(in.String())
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi1(out *jwriter.Writer, in Segment) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"id\":"
+		out.RawString(prefix[1:])
+		out.Int(int(in.ID))
+	}
+	{
+		const prefix string = ",\"DateCreate\":"
+		out.RawString(prefix)
+		out.String(string(in.DateCreate))
+	}
+	{
+		const prefix string = ",\"DateLastChange\":"
+		out.RawString(prefix)
+		out.String(string(in.DateLastChange))
+	}
+	{
+		const prefix string = ",\"Status\":"
+		out.RawString(prefix)
+		out.String(string(in.Status))
+	}
+	{
+		const prefix string = ",\"Changes\":"
+		out.RawString(prefix)
+		out.String(string(in.Changes))
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v Segment) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi1(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v Segment) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi1(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *Segment) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi1(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *Segment) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi1(l, v)
+}
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi2(in *jlexer.Lexer, out *GetThesisByFilterResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -191,7 +285,7 @@ func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi1(in *jlexer.Lex
 		in.Consumed()
 	}
 }
-func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi1(out *jwriter.Writer, in GetThesisByFilterResponse) {
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi2(out *jwriter.Writer, in GetThesisByFilterResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -206,27 +300,27 @@ func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi1(out *jwriter.W
 // MarshalJSON supports json.Marshaler interface
 func (v GetThesisByFilterResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi1(&w, v)
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi2(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v GetThesisByFilterResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi1(w, v)
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi2(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *GetThesisByFilterResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi1(&r, v)
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi2(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *GetThesisByFilterResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi1(l, v)
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi2(l, v)
 }
-func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi2(in *jlexer.Lexer, out *GetThesisByFilterRequest) {
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi3(in *jlexer.Lexer, out *GetThesisByFilterRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -257,7 +351,7 @@ func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi2(in *jlexer.Lex
 		in.Consumed()
 	}
 }
-func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi2(out *jwriter.Writer, in GetThesisByFilterRequest) {
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi3(out *jwriter.Writer, in GetThesisByFilterRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -272,27 +366,291 @@ func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi2(out *jwriter.W
 // MarshalJSON supports json.Marshaler interface
 func (v GetThesisByFilterRequest) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi2(&w, v)
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi3(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v GetThesisByFilterRequest) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi2(w, v)
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi3(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *GetThesisByFilterRequest) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi2(&r, v)
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi3(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *GetThesisByFilterRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi2(l, v)
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi3(l, v)
 }
-func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi3(in *jlexer.Lexer, out *CreateThesisResponse) {
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi4(in *jlexer.Lexer, out *GetSegmentByFilterResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "segment":
+			(out.Segment).UnmarshalEasyJSON(in)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi4(out *jwriter.Writer, in GetSegmentByFilterResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"segment\":"
+		out.RawString(prefix[1:])
+		(in.Segment).MarshalEasyJSON(out)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v GetSegmentByFilterResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi4(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v GetSegmentByFilterResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi4(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *GetSegmentByFilterResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi4(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *GetSegmentByFilterResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi4(l, v)
+}
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi5(in *jlexer.Lexer, out *GetSegmentByFilterRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "id":
+			out.ID = int(in.Int())
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi5(out *jwriter.Writer, in GetSegmentByFilterRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"id\":"
+		out.RawString(prefix[1:])
+		out.Int(int(in.ID))
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v GetSegmentByFilterRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi5(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v GetSegmentByFilterRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi5(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *GetSegmentByFilterRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi5(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *GetSegmentByFilterRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi5(l, v)
+}
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi6(in *jlexer.Lexer, out *GetConferenceByFilterResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "conference":
+			(out.Conference).UnmarshalEasyJSON(in)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi6(out *jwriter.Writer, in GetConferenceByFilterResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"conference\":"
+		out.RawString(prefix[1:])
+		(in.Conference).MarshalEasyJSON(out)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v GetConferenceByFilterResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi6(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v GetConferenceByFilterResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi6(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *GetConferenceByFilterResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi6(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *GetConferenceByFilterResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi6(l, v)
+}
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi7(in *jlexer.Lexer, out *GetConferenceByFilterRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "id":
+			out.ID = int(in.Int())
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi7(out *jwriter.Writer, in GetConferenceByFilterRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"id\":"
+		out.RawString(prefix[1:])
+		out.Int(int(in.ID))
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v GetConferenceByFilterRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi7(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v GetConferenceByFilterRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi7(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *GetConferenceByFilterRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi7(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *GetConferenceByFilterRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi7(l, v)
+}
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi8(in *jlexer.Lexer, out *CreateThesisResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -323,7 +681,7 @@ func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi3(in *jlexer.Lex
 		in.Consumed()
 	}
 }
-func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi3(out *jwriter.Writer, in CreateThesisResponse) {
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi8(out *jwriter.Writer, in CreateThesisResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -336,29 +694,29 @@ func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi3(out *jwriter.W
 }
 
 // MarshalJSON supports json.Marshaler interface
-func (c CreateThesisResponse) MarshalJSON() ([]byte, error) {
+func (v CreateThesisResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi3(&w, c)
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi8(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
-func (c CreateThesisResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi3(w, c)
+func (v CreateThesisResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi8(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
-func (c *CreateThesisResponse) UnmarshalJSON(data []byte) error {
+func (v *CreateThesisResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi3(&r, c)
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi8(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
-func (c *CreateThesisResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi3(l, c)
+func (v *CreateThesisResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi8(l, v)
 }
-func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi4(in *jlexer.Lexer, out *CreateThesisRequest) {
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi9(in *jlexer.Lexer, out *CreateThesisRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -403,7 +761,7 @@ func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi4(in *jlexer.Lex
 		in.Consumed()
 	}
 }
-func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi4(out *jwriter.Writer, in CreateThesisRequest) {
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi9(out *jwriter.Writer, in CreateThesisRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -451,29 +809,29 @@ func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi4(out *jwriter.W
 }
 
 // MarshalJSON supports json.Marshaler interface
-func (c CreateThesisRequest) MarshalJSON() ([]byte, error) {
+func (v CreateThesisRequest) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi4(&w, c)
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi9(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
-func (c CreateThesisRequest) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi4(w, c)
+func (v CreateThesisRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi9(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
-func (c *CreateThesisRequest) UnmarshalJSON(data []byte) error {
+func (v *CreateThesisRequest) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi4(&r, c)
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi9(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
-func (c *CreateThesisRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi4(l, c)
+func (v *CreateThesisRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi9(l, v)
 }
-func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi5(in *jlexer.Lexer, out *ChangeThesisResponse) {
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi10(in *jlexer.Lexer, out *CreateSegmentResponse) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -504,7 +862,517 @@ func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi5(in *jlexer.Lex
 		in.Consumed()
 	}
 }
-func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi5(out *jwriter.Writer, in ChangeThesisResponse) {
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi10(out *jwriter.Writer, in CreateSegmentResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"result\":"
+		out.RawString(prefix[1:])
+		out.String(string(in.Result))
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v CreateSegmentResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi10(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v CreateSegmentResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi10(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *CreateSegmentResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi10(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *CreateSegmentResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi10(l, v)
+}
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi11(in *jlexer.Lexer, out *CreateSegmentRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "id":
+			out.ID = int(in.Int())
+		case "DateCreate":
+			if in.IsNull() {
+				in.Skip()
+				out.DateCreate = nil
+			} else {
+				if out.DateCreate == nil {
+					out.DateCreate = new(string)
+				}
+				*out.DateCreate = string(in.String())
+			}
+		case "DateLastChange":
+			if in.IsNull() {
+				in.Skip()
+				out.DateLastChange = nil
+			} else {
+				if out.DateLastChange == nil {
+					out.DateLastChange = new(string)
+				}
+				*out.DateLastChange = string(in.String())
+			}
+		case "status":
+			if in.IsNull() {
+				in.Skip()
+				out.Status = nil
+			} else {
+				if out.Status == nil {
+					out.Status = new(string)
+				}
+				*out.Status = string(in.String())
+			}
+		case "Changes":
+			if in.IsNull() {
+				in.Skip()
+				out.Changes = nil
+			} else {
+				if out.Changes == nil {
+					out.Changes = new(string)
+				}
+				*out.Changes = string(in.String())
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi11(out *jwriter.Writer, in CreateSegmentRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"id\":"
+		out.RawString(prefix[1:])
+		out.Int(int(in.ID))
+	}
+	{
+		const prefix string = ",\"DateCreate\":"
+		out.RawString(prefix)
+		if in.DateCreate == nil {
+			out.RawString("null")
+		} else {
+			out.String(string(*in.DateCreate))
+		}
+	}
+	{
+		const prefix string = ",\"DateLastChange\":"
+		out.RawString(prefix)
+		if in.DateLastChange == nil {
+			out.RawString("null")
+		} else {
+			out.String(string(*in.DateLastChange))
+		}
+	}
+	{
+		const prefix string = ",\"status\":"
+		out.RawString(prefix)
+		if in.Status == nil {
+			out.RawString("null")
+		} else {
+			out.String(string(*in.Status))
+		}
+	}
+	{
+		const prefix string = ",\"Changes\":"
+		out.RawString(prefix)
+		if in.Changes == nil {
+			out.RawString("null")
+		} else {
+			out.String(string(*in.Changes))
+		}
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v CreateSegmentRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi11(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v CreateSegmentRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi11(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *CreateSegmentRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi11(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *CreateSegmentRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi11(l, v)
+}
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi12(in *jlexer.Lexer, out *CreateConferenceResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "result":
+			out.Result = string(in.String())
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi12(out *jwriter.Writer, in CreateConferenceResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"result\":"
+		out.RawString(prefix[1:])
+		out.String(string(in.Result))
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v CreateConferenceResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi12(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v CreateConferenceResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi12(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *CreateConferenceResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi12(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *CreateConferenceResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi12(l, v)
+}
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi13(in *jlexer.Lexer, out *CreateConferenceRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "id":
+			out.ID = int(in.Int())
+		case "DateCreate":
+			if in.IsNull() {
+				in.Skip()
+				out.DateCreate = nil
+			} else {
+				if out.DateCreate == nil {
+					out.DateCreate = new(string)
+				}
+				*out.DateCreate = string(in.String())
+			}
+		case "DateLastChange":
+			if in.IsNull() {
+				in.Skip()
+				out.DateLastChange = nil
+			} else {
+				if out.DateLastChange == nil {
+					out.DateLastChange = new(string)
+				}
+				*out.DateLastChange = string(in.String())
+			}
+		case "status":
+			if in.IsNull() {
+				in.Skip()
+				out.Status = nil
+			} else {
+				if out.Status == nil {
+					out.Status = new(string)
+				}
+				*out.Status = string(in.String())
+			}
+		case "Changes":
+			if in.IsNull() {
+				in.Skip()
+				out.Changes = nil
+			} else {
+				if out.Changes == nil {
+					out.Changes = new(string)
+				}
+				*out.Changes = string(in.String())
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi13(out *jwriter.Writer, in CreateConferenceRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"id\":"
+		out.RawString(prefix[1:])
+		out.Int(int(in.ID))
+	}
+	{
+		const prefix string = ",\"DateCreate\":"
+		out.RawString(prefix)
+		if in.DateCreate == nil {
+			out.RawString("null")
+		} else {
+			out.String(string(*in.DateCreate))
+		}
+	}
+	{
+		const prefix string = ",\"DateLastChange\":"
+		out.RawString(prefix)
+		if in.DateLastChange == nil {
+			out.RawString("null")
+		} else {
+			out.String(string(*in.DateLastChange))
+		}
+	}
+	{
+		const prefix string = ",\"status\":"
+		out.RawString(prefix)
+		if in.Status == nil {
+			out.RawString("null")
+		} else {
+			out.String(string(*in.Status))
+		}
+	}
+	{
+		const prefix string = ",\"Changes\":"
+		out.RawString(prefix)
+		if in.Changes == nil {
+			out.RawString("null")
+		} else {
+			out.String(string(*in.Changes))
+		}
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v CreateConferenceRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi13(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v CreateConferenceRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi13(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *CreateConferenceRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi13(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *CreateConferenceRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi13(l, v)
+}
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi14(in *jlexer.Lexer, out *Conference) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "id":
+			out.ID = int(in.Int())
+		case "DateCreate":
+			out.DateCreate = string(in.String())
+		case "DateLastChange":
+			out.DateLastChange = string(in.String())
+		case "Status":
+			out.Status = string(in.String())
+		case "Changes":
+			out.Changes = string(in.String())
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi14(out *jwriter.Writer, in Conference) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"id\":"
+		out.RawString(prefix[1:])
+		out.Int(int(in.ID))
+	}
+	{
+		const prefix string = ",\"DateCreate\":"
+		out.RawString(prefix)
+		out.String(string(in.DateCreate))
+	}
+	{
+		const prefix string = ",\"DateLastChange\":"
+		out.RawString(prefix)
+		out.String(string(in.DateLastChange))
+	}
+	{
+		const prefix string = ",\"Status\":"
+		out.RawString(prefix)
+		out.String(string(in.Status))
+	}
+	{
+		const prefix string = ",\"Changes\":"
+		out.RawString(prefix)
+		out.String(string(in.Changes))
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v Conference) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi14(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v Conference) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi14(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *Conference) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi14(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *Conference) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi14(l, v)
+}
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi15(in *jlexer.Lexer, out *ChangeThesisResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "result":
+			out.Result = string(in.String())
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi15(out *jwriter.Writer, in ChangeThesisResponse) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -519,27 +1387,27 @@ func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi5(out *jwriter.W
 // MarshalJSON supports json.Marshaler interface
 func (v ChangeThesisResponse) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi5(&w, v)
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi15(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v ChangeThesisResponse) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi5(w, v)
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi15(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *ChangeThesisResponse) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi5(&r, v)
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi15(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *ChangeThesisResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi5(l, v)
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi15(l, v)
 }
-func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi6(in *jlexer.Lexer, out *ChangeThesisRequest) {
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi16(in *jlexer.Lexer, out *ChangeThesisRequest) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -640,7 +1508,7 @@ func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi6(in *jlexer.Lex
 		in.Consumed()
 	}
 }
-func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi6(out *jwriter.Writer, in ChangeThesisRequest) {
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi16(out *jwriter.Writer, in ChangeThesisRequest) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -718,23 +1586,439 @@ func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi6(out *jwriter.W
 // MarshalJSON supports json.Marshaler interface
 func (v ChangeThesisRequest) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi6(&w, v)
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi16(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v ChangeThesisRequest) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi6(w, v)
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi16(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *ChangeThesisRequest) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi6(&r, v)
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi16(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *ChangeThesisRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi6(l, v)
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi16(l, v)
+}
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi17(in *jlexer.Lexer, out *ChangeSegmentResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "result":
+			out.Result = string(in.String())
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi17(out *jwriter.Writer, in ChangeSegmentResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"result\":"
+		out.RawString(prefix[1:])
+		out.String(string(in.Result))
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v ChangeSegmentResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi17(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v ChangeSegmentResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi17(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *ChangeSegmentResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi17(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *ChangeSegmentResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi17(l, v)
+}
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi18(in *jlexer.Lexer, out *ChangeSegmentRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "id":
+			out.ID = int(in.Int())
+		case "DateCreate":
+			if in.IsNull() {
+				in.Skip()
+				out.DateCreate = nil
+			} else {
+				if out.DateCreate == nil {
+					out.DateCreate = new(string)
+				}
+				*out.DateCreate = string(in.String())
+			}
+		case "DateLastChange":
+			if in.IsNull() {
+				in.Skip()
+				out.DateLastChange = nil
+			} else {
+				if out.DateLastChange == nil {
+					out.DateLastChange = new(string)
+				}
+				*out.DateLastChange = string(in.String())
+			}
+		case "status":
+			if in.IsNull() {
+				in.Skip()
+				out.Status = nil
+			} else {
+				if out.Status == nil {
+					out.Status = new(string)
+				}
+				*out.Status = string(in.String())
+			}
+		case "Changes":
+			if in.IsNull() {
+				in.Skip()
+				out.Changes = nil
+			} else {
+				if out.Changes == nil {
+					out.Changes = new(string)
+				}
+				*out.Changes = string(in.String())
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi18(out *jwriter.Writer, in ChangeSegmentRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"id\":"
+		out.RawString(prefix[1:])
+		out.Int(int(in.ID))
+	}
+	{
+		const prefix string = ",\"DateCreate\":"
+		out.RawString(prefix)
+		if in.DateCreate == nil {
+			out.RawString("null")
+		} else {
+			out.String(string(*in.DateCreate))
+		}
+	}
+	{
+		const prefix string = ",\"DateLastChange\":"
+		out.RawString(prefix)
+		if in.DateLastChange == nil {
+			out.RawString("null")
+		} else {
+			out.String(string(*in.DateLastChange))
+		}
+	}
+	{
+		const prefix string = ",\"status\":"
+		out.RawString(prefix)
+		if in.Status == nil {
+			out.RawString("null")
+		} else {
+			out.String(string(*in.Status))
+		}
+	}
+	{
+		const prefix string = ",\"Changes\":"
+		out.RawString(prefix)
+		if in.Changes == nil {
+			out.RawString("null")
+		} else {
+			out.String(string(*in.Changes))
+		}
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v ChangeSegmentRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi18(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v ChangeSegmentRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi18(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *ChangeSegmentRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi18(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *ChangeSegmentRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi18(l, v)
+}
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi19(in *jlexer.Lexer, out *ChangeConferenceResponse) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "result":
+			out.Result = string(in.String())
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi19(out *jwriter.Writer, in ChangeConferenceResponse) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"result\":"
+		out.RawString(prefix[1:])
+		out.String(string(in.Result))
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v ChangeConferenceResponse) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi19(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v ChangeConferenceResponse) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi19(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *ChangeConferenceResponse) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi19(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *ChangeConferenceResponse) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi19(l, v)
+}
+func easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi20(in *jlexer.Lexer, out *ChangeConferenceRequest) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "id":
+			out.ID = int(in.Int())
+		case "DateCreate":
+			if in.IsNull() {
+				in.Skip()
+				out.DateCreate = nil
+			} else {
+				if out.DateCreate == nil {
+					out.DateCreate = new(string)
+				}
+				*out.DateCreate = string(in.String())
+			}
+		case "DateLastChange":
+			if in.IsNull() {
+				in.Skip()
+				out.DateLastChange = nil
+			} else {
+				if out.DateLastChange == nil {
+					out.DateLastChange = new(string)
+				}
+				*out.DateLastChange = string(in.String())
+			}
+		case "status":
+			if in.IsNull() {
+				in.Skip()
+				out.Status = nil
+			} else {
+				if out.Status == nil {
+					out.Status = new(string)
+				}
+				*out.Status = string(in.String())
+			}
+		case "Changes":
+			if in.IsNull() {
+				in.Skip()
+				out.Changes = nil
+			} else {
+				if out.Changes == nil {
+					out.Changes = new(string)
+				}
+				*out.Changes = string(in.String())
+			}
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi20(out *jwriter.Writer, in ChangeConferenceRequest) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"id\":"
+		out.RawString(prefix[1:])
+		out.Int(int(in.ID))
+	}
+	{
+		const prefix string = ",\"DateCreate\":"
+		out.RawString(prefix)
+		if in.DateCreate == nil {
+			out.RawString("null")
+		} else {
+			out.String(string(*in.DateCreate))
+		}
+	}
+	{
+		const prefix string = ",\"DateLastChange\":"
+		out.RawString(prefix)
+		if in.DateLastChange == nil {
+			out.RawString("null")
+		} else {
+			out.String(string(*in.DateLastChange))
+		}
+	}
+	{
+		const prefix string = ",\"status\":"
+		out.RawString(prefix)
+		if in.Status == nil {
+			out.RawString("null")
+		} else {
+			out.String(string(*in.Status))
+		}
+	}
+	{
+		const prefix string = ",\"Changes\":"
+		out.RawString(prefix)
+		if in.Changes == nil {
+			out.RawString("null")
+		} else {
+			out.String(string(*in.Changes))
+		}
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v ChangeConferenceRequest) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi20(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v ChangeConferenceRequest) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjsonC1cedd36EncodeGithubComCodingSquireMaiMonolitPkgApi20(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *ChangeConferenceRequest) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi20(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *ChangeConferenceRequest) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjsonC1cedd36DecodeGithubComCodingSquireMaiMonolitPkgApi20(l, v)
 }

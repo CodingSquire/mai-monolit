@@ -1,14 +1,16 @@
 package main
 
 import (
-	"os"
-
 	"github.com/valyala/fasthttp"
-
-	httpserver2 "github.com/CodingSquire/mai-monolit/pkg/thesis-svc/httpserver"
 
 	"github.com/joeshaw/envdecode"
 
+	httpserver_conference "github.com/CodingSquire/mai-monolit/pkg/conference-svc/httpserver"
+	httpserver_thesis "github.com/CodingSquire/mai-monolit/pkg/thesis-svc/httpserver"
+	httpserver_segment "github.com/CodingSquire/mai-monolit/pkg/segment-svc/httpserver"
+
+	segment "github.com/CodingSquire/mai-monolit/pkg/segment-svc"
+	conference "github.com/CodingSquire/mai-monolit/pkg/conference-svc"
 	"github.com/CodingSquire/mai-monolit/pkg/dataservice"
 	"github.com/CodingSquire/mai-monolit/pkg/httpserver"
 	"github.com/CodingSquire/mai-monolit/pkg/logger"
@@ -17,9 +19,11 @@ import (
 )
 
 type configuration struct {
-	Logger logger.Config
-	Port   string `env:"PORT,default=true"`
-	Debug  bool   `env:"DEBUG,default=true"`
+	Logger         logger.Config
+	PortThesis     string `env:"PORT_THESIS,default=8081"`
+	PortConference string `env:"PORT_CONFERENCE,default=8082"`
+	PortSegment    string `env:"PORT_SEGMENT,default=8083"`
+	Debug          bool   `env:"DEBUG,default=true"`
 }
 
 var (
@@ -36,17 +40,37 @@ func main() {
 	l := logger.NewLogger(&cfg.Logger)
 	l.Info().Str("git_commit", gitCommit).Str("git_branch", gitBranch).Interface("config", cfg).Msg("The gathered config")
 
-	service := dataservice.NewService(httpserver.NewError)
-	svc := thesis.NewService(service)
-	svc = thesis.NewLoggingMiddleware(svc, l)
+	serviceThesis := dataservice.NewService(httpserver.NewError)
+	svcThesis := thesis.NewService(serviceThesis)
+	svcThesis = thesis.NewLoggingMiddleware(svcThesis, l)
 
-	router := httpserver2.NewPreparedServer(svc)
-
-	port := ":" + os.Getenv("PORT")
-	err := fasthttp.ListenAndServe(port, router.Handler)
+	routerThesis := httpserver_thesis.NewPreparedServer(svcThesis)
+	portThesis := ":" + cfg.PortThesis
+	err := fasthttp.ListenAndServe(portThesis, routerThesis.Handler)
 	if err != nil {
 		log.Fatal().Err(err).Msg("Crash service")
 	}
 
-}
+	serviceConference := dataservice.NewService(httpserver.NewError)
+	svcConference := conference.NewService(serviceConference)
+	svcConference = conference.NewLoggingMiddleware(svcConference, l)
 
+	routerConference := httpserver_conference.NewPreparedServer(svcConference)
+	portConference := ":" + cfg.PortConference
+	err2 := fasthttp.ListenAndServe(portConference, routerConference.Handler)
+	if err2 != nil {
+		log.Fatal().Err(err).Msg("Crash service")
+	}
+
+	serviceSegment := dataservice.NewService(httpserver.NewError)
+	svcSegment := segment.NewService(serviceSegment)
+	svcSegment = segment.NewLoggingMiddleware(svcSegment, l)
+
+	routerSegment := httpserver_segment.NewPreparedServer(svcSegment)
+	portSegment := ":" + cfg.PortSegment
+	err3 := fasthttp.ListenAndServe(portSegment, routerSegment.Handler)
+	if err3 != nil {
+		log.Fatal().Err(err).Msg("Crash service")
+	}
+
+}

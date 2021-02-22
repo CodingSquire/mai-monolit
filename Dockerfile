@@ -23,6 +23,10 @@ WORKDIR /home/root
 # Copy the Pre-built binary file from the previous stage
 COPY --from=builder /home/app/main .
 
+
+EXPOSE 8081
+EXPOSE 8082
+EXPOSE 8083
 # Command to run the executable
 CMD ["./main"]
 
