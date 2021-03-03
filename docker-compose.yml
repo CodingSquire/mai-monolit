@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  thesis:
+    build: thesis-service
+    ports:
+      - "9000:9000"
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgresql://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:5432/${PG_DB_THESIS}
+      - HTTP_PORT=:9000
+      - LOG_LEVEL=TRACE
+      - TIME_TO_SHUTDOWN=10
+      - HOST=localhost
+  postgres:
+    container_name: ${PG_HOST}
+    image: postgres:13
+    restart: always
+    environment:
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+    ports:
+      - "5435:5432"
+    volumes:
+    - database-data:/var/lib/postgresql/data
+    - ./db/entrypoint:/docker-entrypoint-initdb.d
+volumes:
+  database-data:
+
